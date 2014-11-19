@@ -2,10 +2,8 @@
 Copyright (C) 2012 - 2014 Markus Kohlhase <mail@markus-kohlhase.de>
 ###
 
-posix  = require 'posix-ext'
 async  = require 'async'
-fs     = posix.fs
-process= posix.process
+fs     = require 'fs'
 path   = require 'path'
 uuid   = require 'node-uuid'
 mkdirp = require 'mkdirp'
@@ -19,8 +17,8 @@ readIDs = (d, cb) -> fs.readdir d, (err, ids) -> cb err, getIDs ids
 
 canWrite = (stat) ->
 
-  owner = process.getuid() is stat.uid
-  group = process.getgid() is stat.gid
+  owner = process.getuid?() is stat.uid
+  group = process.getgid?() is stat.gid
 
   owner  and (stat.mode & 128) or # User is owner and owner can write.
   group  and (stat.mode & 16 ) or # User is in group and group can write.
