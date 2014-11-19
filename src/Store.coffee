@@ -2,7 +2,6 @@
 Copyright (C) 2012 - 2014 Markus Kohlhase <mail@markus-kohlhase.de>
 ###
 
-var posix = require("../lib/posix-ext"),
 posix  = require 'posix-ext'
 async  = require 'async'
 fs     = posix.fs
